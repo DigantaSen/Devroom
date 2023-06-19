@@ -21,7 +21,7 @@ router.post("/", authenticate, async(request, response) => {
             request.body.image == "undefined" ||
             request.body.image == null
         ) {
-            request.body.image == " "; 
+            request.body.image = " "; 
         }
 
         let newPost = {
@@ -36,7 +36,7 @@ router.post("/", authenticate, async(request, response) => {
         let post = new Post(newPost);
         post = await User.populate(post, {path: "user.avatar"});
         post = await post.save();
-
+        response.status(200).json({post: post});
     } catch(error){
         console.log(error);
         response.status(500).json({errors: [{msg: error.message}]});
@@ -53,7 +53,7 @@ router.post("/", authenticate, async(request, response) => {
 
 router.get("/", authenticate, async(request, response) => {
     try {
-        let posts = await Post.find().populate("user", ["_id", "avater"]);
+        let posts = await Post.find().populate("user", ["_id", "avatar"]);
         if(!posts) {
             return response.status(400).json({errors: [{msg: "No Posts Found"}]});
         }
@@ -79,7 +79,7 @@ router.get("/:postId", authenticate, async(request, response) => {
         if(!post){
             return response.status(400).json({errors: [{msg: "No Post Found"}]});
         }
-        response.status(500).json({post: post});
+        response.status(200).json({post: post});
     } catch (error) {
         console.error(error);
         response.status(500).json({ errors: [{ msg: error.message }] });
@@ -94,7 +94,7 @@ router.get("/:postId", authenticate, async(request, response) => {
     @access : PRIVATE
  */
 
-router.delete(":/postId", authenticate, async(request, response) => {
+router.delete("/:postId", authenticate, async(request, response) => {
     try{
         let postId = request.params.postId;
         // Check if post is exists
@@ -169,7 +169,8 @@ router.post(
                 user: request.user.id,
                 text: request.body.text,
                 name: user.name,
-                avatar: user.avatar
+                avatar: user.avatar,
+                date: Date.now()
             }
 
             post.comments.unshift(newComment);
@@ -219,7 +220,7 @@ router.delete(
             let removeIndex = post.comments.findIndex((p) => p._id == commentId)
 
             if(removeIndex !== -1){
-                post.comments.splice(removeIndex, 4);
+                post.comments.splice(removeIndex, 1);
                 await post.save();
                 response.status(200).json({post: post});
             }

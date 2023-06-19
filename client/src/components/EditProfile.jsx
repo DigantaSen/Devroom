@@ -253,7 +253,7 @@ const EditProfile = () => {
                     </div>
                     <div className="mt-3">
                       <input type="submit" className="btn btn-teal btn-sm" value="Update" />
-                      <Link to="/profiles/dashboard" className='btn bg-light-grey btn-sm ms-2'>b</Link>
+                      <Link to="/profiles/dashboard" className='btn bg-light-grey btn-sm ms-2'>Back</Link>
                     </div>
                   </form>
                 </div>
