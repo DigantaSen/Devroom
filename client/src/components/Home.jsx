@@ -29,7 +29,7 @@ const Home = () => {
                             <Link to='/users/register' className='btn btn-primary btn-sm text-white me-5'>
                                 Register
                             </Link>
-                            <Link to='/users/register' className='btn btn-success btn-sm'>
+                            <Link to='/users/login' className='btn btn-success btn-sm'>
                                 Login
                             </Link>
                         </div>

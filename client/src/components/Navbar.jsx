@@ -44,26 +44,28 @@ const Navbar = () => {
 
   let afterLogin = (
     <React.Fragment>
-      <li className="nav-item">
-        <Link to="/posts/list" className="nav-link">
-          <i className="fa fa-list">Posts</i>
-        </Link>
-      </li>
-      <li className="nav-item">
-        <Link to="/profiles/dashboard" className="nav-link">
-          <i className="fa fa-sitemap">Dashboard</i>
-        </Link>
-      </li>
-      <li className="nav-item">
-        <Link to="/" className="nav-link">
-          <img src={user.avatar} alt="" width="25" height="25" className="rounded-circle" />
-        </Link>
-      </li>
-      <li className="nav-item">
-        <Link to="/" className="nav-link" onClick={clickLogOut}>
-          LogOut
-        </Link>
-      </li>
+      <ul>
+        <li className="nav-item">
+          <Link to="/posts/list" className="nav-link">
+            <i className="fa fa-list">Posts</i>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/profiles/dashboard" className="nav-link">
+            <i className="fa fa-sitemap">Dashboard</i>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/" className="nav-link">
+            <img src={user.avatar} alt="" width="25" height="25" className="rounded-circle" />
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/" className="nav-link" onClick={clickLogOut}>
+            LogOut
+          </Link>
+        </li>
+      </ul>
     </React.Fragment>
   )
 
